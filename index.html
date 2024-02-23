@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Política SJN</title>
+    <style>
+        /* Estilos CSS para el diseño de la página */
+
+        body {
+            /* Estilos para el cuerpo del documento */
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            /* Estilos para el contenedor principal */
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            overflow-y: auto;
+            max-height: 60vh;
+        }
+
+        h1 {
+            /* Estilos para los encabezados */
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            /* Estilos para las etiquetas */
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        input[type="number"] {
+            /* Estilos para los inputs numéricos */
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            /* Estilos para el botón de submit */
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            /* Estilos para el botón de submit al pasar el mouse */
+            background-color: #45a049;
+        }
+
+        footer {
+            /* Estilos para el pie de página */
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Política Planificación SJN Shortest Job Next </h1>
+        <form method="POST" action="/">
+            <label for="num_procesos">Cantidad de Procesos:</label>
+            <input type="number" id="num_procesos" name="num_procesos"><br><br>
+
+            <div id="campos_proceso" class="campos-proceso"></div>
+
+            <input type="submit" value="Ejecutar">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('num_procesos').addEventListener('change', function() {
+            var numProcesos = parseInt(this.value);
+            var camposProceso = document.getElementById('campos_proceso');
+            camposProceso.innerHTML = '';
+
+            for (var i = 0; i < numProcesos; i++) {
+                var labelLlegada = document.createElement('label');
+                labelLlegada.textContent = `Tiempo de Llegada Proceso ${String.fromCharCode(65 + i)}: `;
+                var inputLlegada = document.createElement('input');
+                inputLlegada.setAttribute('type', 'number');
+                inputLlegada.setAttribute('name', `tiempo_llegada_${i}`);
+                camposProceso.appendChild(labelLlegada);
+                camposProceso.appendChild(inputLlegada);
+                camposProceso.appendChild(document.createElement('br'));
+
+                var labelEjecucion = document.createElement('label');
+                labelEjecucion.textContent = `Tiempo de Ejecución Proceso ${String.fromCharCode(65 + i)}: `;
+                var inputEjecucion = document.createElement('input');
+                inputEjecucion.setAttribute('type', 'number');
+                inputEjecucion.setAttribute('name', `tiempo_ejecucion_${i}`);
+                camposProceso.appendChild(labelEjecucion);
+                camposProceso.appendChild(inputEjecucion);
+                camposProceso.appendChild(document.createElement('br'));
+            }
+        });
+    </script>
+
+    <footer>
+        
+        &copy; 2023 (GJKP) Política SJN
+    </footer>
+</body>
+
+</html>
